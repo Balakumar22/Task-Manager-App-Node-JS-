@@ -1,5 +1,5 @@
 const express = require("express");
-require("./db/mongoose");
+const connectDB = require("./db/mongoose");
 
 // Routes
 const userRouter = require("./router/user");
@@ -13,7 +13,9 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Server is listening on port ${port}`));
+connectDB.then(() => {
+  app.listen(port, () => console.log(`Server is listening on port ${port}`));
+});
 
 //USER
 app.use("/user", userRouter);
