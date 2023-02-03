@@ -13,7 +13,8 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;
 
-connectDB.then(() => {
+connectDB().then(() => {
+  console.log("After connect DB!");
   app.listen(port, () => console.log(`Server is listening on port ${port}`));
 });
 
